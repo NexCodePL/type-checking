@@ -1,0 +1,3 @@
+interface Wow {
+    a: string;
+}
