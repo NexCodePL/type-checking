@@ -1,6 +1,6 @@
 {
     "name": "@nexcodepl/type-checking",
-    "version": "1.0.1",
+    "version": "1.0.5",
     "description": "Package for checking object by typescript type definition",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -21,7 +21,8 @@
         "prepublishOnly": "yarn lint",
         "preversion": "yarn lint",
         "version": "yarn format && git add -A src",
-        "postversion": "git push && git push --tags"
+        "postversion": "git push && git push --tags",
+        "publish:npm": "npm publish --access public"
     },
     "dependencies": {},
     "devDependencies": {

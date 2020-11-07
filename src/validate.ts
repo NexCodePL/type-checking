@@ -7,6 +7,7 @@ import {
     ValidateObjectDefinitionObjectType,
     ValidateObjectError,
     ValidetObjectResponse,
+    PropValidateCustomBase,
 } from "./validate.types";
 
 export function validateObject<T extends Base<T>>(
@@ -28,7 +29,7 @@ export function validateObject<T extends Base<T>>(
 
         const objectProp = object[key];
 
-        if (objectProp) {
+        if (objectProp !== undefined) {
             switch (definitionType) {
                 case "boolean":
                 case "number":
@@ -103,6 +104,13 @@ export function validateObject<T extends Base<T>>(
                             errorMessage: `Field '${fieldName}' is not array.`,
                         });
                     }
+                    break;
+
+                case "objectCustom":
+                case "objectArrayCustom":
+                    errors.push(
+                        ...(definition as PropValidateCustomBase<any, any>).customValidate(objectProp, fieldName).errors
+                    );
                     break;
             }
         } else {
